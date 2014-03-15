@@ -7,8 +7,12 @@ body {
   font-family: 'Lora', serif;
   font-size: 21px;
   line-height: 1.52;
-  background-color: #f8f8f8;
   text-rendering: optimizeLegibility;
+
+  background-color: #d1e0f5;
+  background:#d1e0f5 -webkit-linear-gradient(top,#f6f1f0 10%,#d1e0f5 86%) no-repeat;
+  background:#d1e0f5 -webkit-gradient(linear,top left,bottom left,from(top),color-stop(10%,#f6f1f0),to(#d1e0f5)) no-repeat;
+  background:#d1e0f5 linear-gradient(top,#f6f1f0 10%,#d1e0f5 86%) no-repeat;
 }
 
 .content-wrap {
