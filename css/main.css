@@ -30,7 +30,7 @@ a:hover {
 }
 
 p {
-  margin-bottom: 1.52em;
+  margin-bottom: 1.8em;
 }
 
 pre {
@@ -208,7 +208,7 @@ footer .copy, footer .copy a {
 }
 
 .article.intro .content p {
-  display: inline;
+  display: block;
 }
 
 .article.intro .content .more {

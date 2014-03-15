@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Having fun with Docker - Devric
+    </title>
+    <link rel="alternate" href="http://localhost:8080/feed.xml" type="application/rss+xml" title="I'm just talking to myself...">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Having fun with Docker</h1>
+        <p class="author">Written by <span class="author">Devric</span>
+        </p>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p><img src="/articles/docker1/docker_logo.png" alt="Docker"></p>
+<p>Recently clean installed my mac, but there is still some issues with my graphic card, probably the logic board&nbsp;:( </p>
+<p>… well too expensive to fix it if it&nbsp;is.</p>
+<p><span class="more"></span></p>
+<p>Anyway, since it’s a clean install and I’m kind of tired of managing all the environments like nginx, php, node, ruby, python, and different databases directly in my mac, and not that happy with using so many different boxes of vagrants, it just eating up my machines&nbsp;resources! </p>
+<p>So I finally start to look into <span class="caps">LXC</span> containers with docker, and yup it is just F……. awesome. A whole linux development or production environents can be boot it up within minutes, and very&nbsp;portable.</p>
+<p>Since I’m on a mac, a <span class="caps">VM</span> box is required to run docker with, I started to go with a ubuntu box and installed docker with it, but it’s quite slow for the booting, so I went for&nbsp;boot2docker.</p>
+<p>Fiddling around with boot2docker for a day, this <span class="caps">VM</span> is very lightweight, and was design to run purely on ram which is blazing fast to use, however the current version can’t have share drives through the VM, only hackrish fix is to mount a folder within the VM to my host, instead of tring to make the NFS working with boot2docker, I gave up, and switched for&nbsp;coreos.</p>
+<p>It’s not as fast as boot2docker, but it is still a lightweight <span class="caps">VM</span>, and have NFS ready out of the box! FK….. love it! it is build for docker! I’ve been using it for a while now. Should start to write some articles about it&nbsp;soon.</p>
+</section><div id="disqus_thread"></div>
+        </article>
+        <script>
+          var disqus_shortname = 'devricio'; // required: replace example with your forum shortname
+          
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          
+        </script>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">« Full blog</a></div>
+        <section class="about"><p>Wintersmith is made by <a href="http://johan-nordberg.com/">Johan Nordberg</a> and licensed under the <a href="http://opensource.org/licenses/MIT">MIT-license</a>.
+This footer text can be edited in about.md</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat.</p>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+dolore eu fugiat nulla pariatur.</p>
+<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+deserunt mollit anim id est laborum.</p>
+
+        </section>
+        <section class="copy">
+          <p>&copy; 2014 Devric</p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -5,9 +5,26 @@
     <atom:link href="http://localhost:8080/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://localhost:8080</link>
     <description>I'm just talking to myself...</description>
-    <pubDate>Tue, 30 Apr 2013 10:00:00 +1000</pubDate>
+    <pubDate>Wed, 16 Apr 2014 15:00:00 +1000</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Having fun with Docker</title>
+      <link>http://localhost:8080/articles/docker1/</link>
+      <pubDate>Wed, 16 Apr 2014 15:00:00 +1000</pubDate>
+      <guid isPermaLink="true">http://localhost:8080/articles/docker1/</guid>
+      <author></author>
+      <description>&lt;p&gt;&lt;img src=&quot;http://localhost:8080/articles/docker1/docker_logo.png&quot; alt=&quot;Docker&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Recently clean installed my mac, but there is still some issues with my graphic card, probably the logic board :( &lt;/p&gt;
+&lt;p&gt;… well too expensive to fix it if it is.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Anyway, since it’s a clean install and I’m kind of tired of managing all the environments like nginx, php, node, ruby, python, and different databases directly in my mac, and not that happy with using so many different boxes of vagrants, it just eating up my machines resources! &lt;/p&gt;
+&lt;p&gt;So I finally start to look into LXC containers with docker, and yup it is just F……. awesome. A whole linux development or production environents can be boot it up within minutes, and very portable.&lt;/p&gt;
+&lt;p&gt;Since I’m on a mac, a VM box is required to run docker with, I started to go with a ubuntu box and installed docker with it, but it’s quite slow for the booting, so I went for boot2docker.&lt;/p&gt;
+&lt;p&gt;Fiddling around with boot2docker for a day, this VM is very lightweight, and was design to run purely on ram which is blazing fast to use, however the current version can’t have share drives through the VM, only hackrish fix is to mount a folder within the VM to my host, instead of tring to make the NFS working with boot2docker, I gave up, and switched for coreos.&lt;/p&gt;
+&lt;p&gt;It’s not as fast as boot2docker, but it is still a lightweight VM, and have NFS ready out of the box! FK….. love it! it is build for docker! I’ve been using it for a while now. Should start to write some articles about it soon.&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>README</title>
       <link>http://localhost:8080/articles/hello-world/</link>
