@@ -26,10 +26,45 @@
 </description>
     </item>
     <item>
+      <title>Ie Hates Css</title>
+      <link>http://localhost:8080/articles/16mar14-iehatecss/</link>
+      <pubDate>Wed, 16 Apr 2014 14:23:00 +1000</pubDate>
+      <guid isPermaLink="true">http://localhost:8080/articles/16mar14-iehatecss/</guid>
+      <author></author>
+      <description>&lt;p&gt;Ie Hates css, it’s fustrating and we all know that… So for those who not yet using a css preprocessor and need to break css down into components or pages during the development of a large application, you wouldn’t want to cocat the whole css file every time you make a small change, so to make your development process faster you would just link those css files one by one into your app. But ie has a limit of how many css files it can load. heres how to do it.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To make IE loads all the css file you can use inline @import&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style&amp;gt;
+@import &amp;#39;button.css&amp;#39;
+@import &amp;#39;page.css&amp;#39;
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But it will still hit a limit if you keep on @importing more than 30 files per style tag, what you do is do a loop and make sure there no more than 20 @import per style tags (I don’t remember the excat limit, but as long as it kept under 20 @imports, it should work fine. you can easily break your css down to more than 100 fiels).&lt;/p&gt;
+&lt;p&gt;Like this&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style&amp;gt;
+@import &amp;#39;button.css&amp;#39;
+...
+...
+...
+@import &amp;#39;layout-app.css&amp;#39;
+@import &amp;#39;layout-body.css&amp;#39;
+@import &amp;#39;layout-footer.css&amp;#39;
+&amp;lt;/style&amp;gt;
+
+&amp;lt;style&amp;gt;
+@import &amp;#39;page-home.css&amp;#39;
+@import &amp;#39;pages-omething.css&amp;#39;
+...
+...
+...
+@import &amp;#39;widget-slider-one.css&amp;#39;
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
       <title>Bloging again with wintersmith</title>
-      <link>http://localhost:8080/articles/16mar14-startwintersmith/</link>
+      <link>http://localhost:8080/articles/14mar14-startwintersmith/</link>
       <pubDate>Mon, 14 Apr 2014 22:00:00 +1000</pubDate>
-      <guid isPermaLink="true">http://localhost:8080/articles/16mar14-startwintersmith/</guid>
+      <guid isPermaLink="true">http://localhost:8080/articles/14mar14-startwintersmith/</guid>
       <author></author>
       <description>&lt;p&gt;I was using co.cc a couple years ago and a simple wordpres blog, but since co.cc shuts down, and haven’t really backed up my files, I stopped blogging, until Wintersmith!&lt;/p&gt;
 &lt;p&gt;Here’s how you set up one with github pages.&lt;/p&gt;

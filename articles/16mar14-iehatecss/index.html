@@ -4,62 +4,65 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
-    <title>Devric
+    <title>Ie Hates Css - Devric
     </title>
     <link rel="alternate" href="http://localhost:8080/feed.xml" type="application/rss+xml" title="I'm just talking to myself...">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
     <link rel="stylesheet" href="/css/main.css">
   </head>
-  <body>
+  <body class="article-detail">
     <header class="header">
       <div class="content-wrap">
-        <div class="logo">
-          <h1><a href="http://localhost:8080">Devric</a></h1>
-          <p class="description">I'm just talking to myself...</p>
-        </div>
+        <h1>Ie Hates Css</h1>
+        <p class="author">Written by <span class="author">Devric</span>
+        </p>
       </div>
     </header>
     <div id="content">
       <div class="content-wrap">
-        <article class="article intro">
-          <header>
-            <p class="date"><span>16. April 2014</span></p>
-            <h2><a href="/articles/docker1/">Having fun with Docker</a></h2>
-          </header>
-          <section class="content"><p><img src="/articles/docker1/docker_logo.png" alt="Docker"></p>
-<p>Recently clean installed my mac, but there is still some issues with my graphic card, probably the logic board&nbsp;:( </p>
-<p>… well too expensive to fix it if it&nbsp;is.</p>
-<p>
-            <p class="more"><a href="/articles/docker1/">more</a></p>
-          </section>
-        </article>
-        <article class="article intro">
-          <header>
-            <p class="date"><span>16. April 2014</span></p>
-            <h2><a href="/articles/16mar14-iehatecss/">Ie Hates Css</a></h2>
-          </header>
+        <article class="article">
           <section class="content"><p>Ie Hates css, it’s fustrating and we all know that… So for those who not yet using a css preprocessor and need to break css down into components or pages during the development of a large application, you wouldn’t want to cocat the whole css file every time you make a small change, so to make your development process faster you would just link those css files one by one into your app. But ie has a limit of how many css files it can load. heres how to do&nbsp;it.</p>
-<p>
-            <p class="more"><a href="/articles/16mar14-iehatecss/">more</a></p>
-          </section>
+<p><span class="more"></span></p>
+<p>To make <span class="caps">IE</span> loads all the css file you can use inline&nbsp;@import</p>
+<pre><code>&lt;style&gt;
+@import &#39;button.css&#39;
+@import &#39;page.css&#39;
+&lt;/style&gt;
+</code></pre><p>But it will still hit a limit if you keep on @importing more than 30 files per style tag, what you do is do a loop and make sure there no more than 20 @import per style tags (I don’t remember the excat limit, but as long as it kept under 20 @imports, it should work fine. you can easily break your css down to more than 100&nbsp;fiels).</p>
+<p>Like&nbsp;this</p>
+<pre><code>&lt;style&gt;
+@import &#39;button.css&#39;
+...
+...
+...
+@import &#39;layout-app.css&#39;
+@import &#39;layout-body.css&#39;
+@import &#39;layout-footer.css&#39;
+&lt;/style&gt;
+
+&lt;style&gt;
+@import &#39;page-home.css&#39;
+@import &#39;pages-omething.css&#39;
+...
+...
+...
+@import &#39;widget-slider-one.css&#39;
+&lt;/style&gt;
+</code></pre></section><div id="disqus_thread"></div>
         </article>
-        <article class="article intro">
-          <header>
-            <p class="date"><span>14. April 2014</span></p>
-            <h2><a href="/articles/14mar14-startwintersmith/">Bloging again with wintersmith</a></h2>
-          </header>
-          <section class="content"><p>I was using co.cc a couple years ago and a simple wordpres blog, but since co.cc shuts down, and haven’t really backed up my files, I stopped blogging, until&nbsp;Wintersmith!</p>
-<p>Here’s how you set up one with github&nbsp;pages.</p>
-<p>
-            <p class="more"><a href="/articles/14mar14-startwintersmith/">more</a></p>
-          </section>
-        </article>
+        <script>
+          var disqus_shortname = 'devricio'; // required: replace example with your forum shortname
+          
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          
+        </script>
       </div>
     </div>
     <footer>
       <div class="content-wrap">
-        <div class="nav"><a href="/archive.html">« Archives</a><a href="/page/2/">Next page »</a>
-        </div>
+        <div class="nav"><a href="/">« Full blog</a></div>
         <section class="about"><p>This blog is powerd by <a href="http://wintersmith.io/">Wintersmith</a> + <a href="http://github.com/">github pages</a></p>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
