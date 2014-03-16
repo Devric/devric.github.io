@@ -4,7 +4,24 @@
     "url": "http://devric.github.com",
     "name": "Devric",
     "owner": "Devric",
-    "description": "I'm just talking to myself..."
+    "description": "I'm just talking to myself...",
+    "nav" : [
+        {
+            "name" : "Home",
+            "alt" : "Home page",
+            "url" : "/"
+        },
+        {
+            "name" : "Contact",
+            "alt" : "Contact me",
+            "url" : "/contact"
+        },
+        {
+            "name" : "About",
+            "alt" : "About me",
+            "url" : "/about"
+        }
+    ]
   },
   "plugins": [
     "./plugins/paginator.coffee",
