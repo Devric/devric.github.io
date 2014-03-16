@@ -38,7 +38,7 @@
 @import &amp;#39;button.css&amp;#39;
 @import &amp;#39;page.css&amp;#39;
 &amp;lt;/style&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But it will still hit a limit if you keep on @importing more than 30 files per style tag, what you do is do a loop and make sure there no more than 20 @import per style tags (I don’t remember the excat limit, but as long as it kept under 20 @imports, it should work fine. you can easily break your css down to more than 100 fiels).&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But it will still hit a limit if you keep on @importing more than 30 files per style tag, what you do is do a loop and make sure there no more than 20 @import per style tags (I don’t remember the excat limit, but as long as it kept under 20 @imports, it should work fine. you can easily break your css down to more than 100 files).&lt;/p&gt;
 &lt;p&gt;Like this&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;style&amp;gt;
 @import &amp;#39;button.css&amp;#39;
@@ -98,71 +98,6 @@ template: article.jade
 &lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;add-comment-box&quot;&gt;Add comment box&lt;/h4&gt;
 &lt;p&gt;Since this is a static site, theres no backend. But we can still add our comment system with disqus, simply go into the template folder and add the universal disqus code into the article.jade template file, you will need to learn jade lang a bit, don’t worry its really easy! Just follow the instruction on disqus and add it into a script. tag within your template right under your article.&lt;/p&gt;
 &lt;p&gt;I’ll start to theme it soon, and put out guides on theming wintersmith :)&lt;/p&gt;
-</description>
-    </item>
-    <item>
-      <title>README</title>
-      <link>http://localhost:8080/articles/hello-world/</link>
-      <pubDate>Tue, 30 Apr 2013 10:00:00 +1000</pubDate>
-      <guid isPermaLink="true">http://localhost:8080/articles/hello-world/</guid>
-      <author></author>
-      <description>&lt;p&gt;Welcome to your new blog! This is the default blog template with RSS, pagination and an archive. There are other templates available — run &lt;code&gt;wintersmith new --help&lt;/code&gt; to list them.&lt;/p&gt;
-&lt;h2 id=&quot;_repeat-after-me-_-this-is-my-blog-there-are-many-like-it-but-this-one-is-mine-my-blog-is-my-best-friend-it-is-my-life-i-must-master-it-as-i-must-master-my-life-my-blog-without-me-is-useless-without-my-blog-i-am-useless-&quot;&gt;&lt;em&gt;Repeat after me:&lt;/em&gt; This is my blog. There are many like it, but this one is mine. My blog is my best friend. It is my life. I must master it as I must master my life. My blog, without me, is useless. Without my blog, I am useless.&lt;/h2&gt;
-&lt;p&gt;Good, now, the directory structure of your blog is as follows:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;├── config.json               &amp;lt;- site configuration
-├── contents
-│   ├── about.md
-│   ├── archive.json
-│   ├── articles              &amp;lt;– each article has its own directory
-│   │   ├── another-test
-│   │   │   └── index.md
-│   │   ├── bamboo-cutter
-│   │   │   ├── index.md
-│   │   │   └── taketori_monogatari.jpg
-│   │   ├── hello-world
-│   │   │   └── index.md
-│   │   ├── markdown-syntax
-│   │   │   └── index.md
-│   │   └── red-herring
-│   │       ├── banana.png
-│   │       └── index.md
-│   ├── authors               &amp;lt;- author metadata, check author.jade
-│   │   ├── baker.json
-│   │   └── the-wintersmith.json
-│   ├── css
-│   │   └── main.css
-│   └── feed.json
-├── plugins
-│   └── paginator.coffee      &amp;lt;- paginator plugin
-├── templates
-│   ├── archive.jade
-│   ├── article.jade
-│   ├── author.jade
-│   ├── feed.jade
-│   ├── index.jade
-│   └── layout.jade
-└── views
-    └── articles.coffee       &amp;lt;- view that lists articles
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Articles are sorted by date and 3 are shown per page, you can configure this and more in config.json. Check paginator.coffee for all options related to pagination, most plugins also have their own options.&lt;/p&gt;
-&lt;h3 id=&quot;a-typical-article&quot;&gt;A typical article&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-markdown&quot;&gt;&lt;span class=&quot;horizontal_rule&quot;&gt;---&lt;/span&gt;
-title: Hear me blog
-author: johndoe
-&lt;span class=&quot;header&quot;&gt;date: 2012-12-12 12:12
----&lt;/span&gt;
-
-This will be shown as the article excerpt.
-
-&lt;span class=&quot;header&quot;&gt;## A h2, hr or &amp;lt;span class=&quot;more&quot;&amp;gt; marks where the intro cuts off&lt;/span&gt;
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is where I leave you to your own devices. Join &lt;strong&gt;#wintersmith&lt;/strong&gt; on freenode if you have any questions.&lt;/p&gt;
 </description>
     </item>
     <item>

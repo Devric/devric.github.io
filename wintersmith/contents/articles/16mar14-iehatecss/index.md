@@ -19,7 +19,7 @@ To make IE loads all the css file you can use inline @import
 </style>
 ```
 
-But it will still hit a limit if you keep on @importing more than 30 files per style tag, what you do is do a loop and make sure there no more than 20 @import per style tags (I don't remember the excat limit, but as long as it kept under 20 @imports, it should work fine. you can easily break your css down to more than 100 fiels).
+But it will still hit a limit if you keep on @importing more than 30 files per style tag, what you do is do a loop and make sure there no more than 20 @import per style tags (I don't remember the excat limit, but as long as it kept under 20 @imports, it should work fine. you can easily break your css down to more than 100 files).
 
 Like this
 
