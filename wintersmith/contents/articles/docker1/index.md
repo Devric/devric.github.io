@@ -2,6 +2,7 @@
 title: Having fun with Docker
 author: Devric
 date: 2014-04-16 15:00
+tags: docker, general
 template: article.jade
 ---
 

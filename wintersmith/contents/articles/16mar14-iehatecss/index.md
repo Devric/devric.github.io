@@ -2,7 +2,7 @@
 title: Ie Hates Css
 author: Devric
 date: 2014-04-16 14:23
-tag: ie, css, workaround
+tags: ie, css
 template: article.jade
 ---
 

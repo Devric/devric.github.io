@@ -439,3 +439,25 @@ code.lang-markdown .bullet {
   }
 }
 
+
+/**
+ * Tags
+ */
+nav.tags {
+    font-size: 0.7em;
+}
+
+nav.tags a {
+    margin:0 25px 5px 0;
+    text-decoration: none;
+    position:relative;
+}
+
+nav.tags a:before {
+    content : "\00b7";
+    font-size: 3em;
+    position: absolute;
+    top: 0;
+    left: -15px;
+    line-height: 0.45
+}

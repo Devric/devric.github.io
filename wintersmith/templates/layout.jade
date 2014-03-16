@@ -31,6 +31,15 @@ html(lang='en')
           h2 Welcome to zombocom!
     footer
       div.content-wrap
+        nav.tags
+          - var allTags = env.helpers.getAllTags()
+          if tagName
+            span
+               span= tagName
+          else
+            span
+              each tag in allTags
+                a.big(href=env.helpers.getTagHome(tag).url)= tag
         block footer
           section.about
             !=contents['about.md'].html

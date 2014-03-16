@@ -2,6 +2,7 @@
 title: Bloging again with wintersmith
 author: Devric
 date: 2014-04-14 22:00
+tags: wintersmith, general
 template: article.jade
 ---
 
