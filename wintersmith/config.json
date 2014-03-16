@@ -1,7 +1,7 @@
 {
   "output" : "../",
   "locals": {
-    "url": "http://localhost:8080",
+    "url": "http://devric.github.com",
     "name": "Devric",
     "owner": "Devric",
     "description": "I'm just talking to myself..."

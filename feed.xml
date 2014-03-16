@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Devric</title>
-    <atom:link href="http://localhost:8080/feed.xml" rel="self" type="application/rss+xml"></atom:link>
-    <link>http://localhost:8080</link>
+    <atom:link href="http://devric.github.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <link>http://devric.github.com</link>
     <description>I'm just talking to myself...</description>
     <pubDate>Wed, 16 Apr 2014 15:00:00 +1000</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
     <item>
       <title>Having fun with Docker</title>
-      <link>http://localhost:8080/articles/docker1/</link>
+      <link>http://devric.github.com/articles/docker1/</link>
       <pubDate>Wed, 16 Apr 2014 15:00:00 +1000</pubDate>
-      <guid isPermaLink="true">http://localhost:8080/articles/docker1/</guid>
+      <guid isPermaLink="true">http://devric.github.com/articles/docker1/</guid>
       <author></author>
-      <description>&lt;p&gt;&lt;img src=&quot;http://localhost:8080/articles/docker1/docker_logo.png&quot; alt=&quot;Docker&quot;&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&quot;http://devric.github.com/articles/docker1/docker_logo.png&quot; alt=&quot;Docker&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Recently clean installed my mac, but there is still some issues with my graphic card, probably the logic board :( &lt;/p&gt;
 &lt;p&gt;… well too expensive to fix it if it is.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
@@ -27,9 +27,9 @@
     </item>
     <item>
       <title>Ie Hates Css</title>
-      <link>http://localhost:8080/articles/16mar14-iehatecss/</link>
+      <link>http://devric.github.com/articles/16mar14-iehatecss/</link>
       <pubDate>Wed, 16 Apr 2014 14:23:00 +1000</pubDate>
-      <guid isPermaLink="true">http://localhost:8080/articles/16mar14-iehatecss/</guid>
+      <guid isPermaLink="true">http://devric.github.com/articles/16mar14-iehatecss/</guid>
       <author></author>
       <description>&lt;p&gt;Ie Hates css, it’s fustrating and we all know that… So for those who not yet using a css preprocessor and need to break css down into components or pages during the development of a large application, you wouldn’t want to cocat the whole css file every time you make a small change, so to make your development process faster you would just link those css files one by one into your app. But ie has a limit of how many css files it can load. heres how to do it.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
@@ -62,9 +62,9 @@
     </item>
     <item>
       <title>Bloging again with wintersmith</title>
-      <link>http://localhost:8080/articles/14mar14-startwintersmith/</link>
+      <link>http://devric.github.com/articles/14mar14-startwintersmith/</link>
       <pubDate>Mon, 14 Apr 2014 22:00:00 +1000</pubDate>
-      <guid isPermaLink="true">http://localhost:8080/articles/14mar14-startwintersmith/</guid>
+      <guid isPermaLink="true">http://devric.github.com/articles/14mar14-startwintersmith/</guid>
       <author></author>
       <description>&lt;p&gt;I was using co.cc a couple years ago and a simple wordpres blog, but since co.cc shuts down, and haven’t really backed up my files, I stopped blogging, until Wintersmith!&lt;/p&gt;
 &lt;p&gt;Here’s how you set up one with github pages.&lt;/p&gt;
@@ -102,9 +102,9 @@ template: article.jade
     </item>
     <item>
       <title>Code and stuff!</title>
-      <link>http://localhost:8080/articles/another-test/</link>
+      <link>http://devric.github.com/articles/another-test/</link>
       <pubDate>Mon, 01 Oct 2012 15:00:00 +1000</pubDate>
-      <guid isPermaLink="true">http://localhost:8080/articles/another-test/</guid>
+      <guid isPermaLink="true">http://devric.github.com/articles/another-test/</guid>
       <author></author>
       <description>&lt;p&gt;Syntax highlighting with &lt;a href=&quot;http://softwaremaniacs.org/soft/highlight/en/&quot;&gt;highlight.js&lt;/a&gt;.
 The theme used is tomorrow, you can find more themes &lt;a href=&quot;http://jmblog.github.io/color-themes-for-highlightjs/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -199,45 +199,45 @@ The theme used is tomorrow, you can find more themes &lt;a href=&quot;http://jmb
     </item>
     <item>
       <title>Markdown syntax</title>
-      <link>http://localhost:8080/articles/markdown-syntax/</link>
+      <link>http://devric.github.com/articles/markdown-syntax/</link>
       <pubDate>Thu, 02 Feb 2012 11:00:00 +1100</pubDate>
-      <guid isPermaLink="true">http://localhost:8080/articles/markdown-syntax/</guid>
+      <guid isPermaLink="true">http://devric.github.com/articles/markdown-syntax/</guid>
       <author></author>
       <description>&lt;p&gt;Full markdown syntax taken from John Gruber’s &lt;a href=&quot;http://daringfireball.net/projects/markdown/syntax&quot;&gt;Daring Fireball&lt;/a&gt;.
 Did you know that 9 out of 10 bloggers prefer to write in markdown?&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&quot;markdown-syntax&quot;&gt;Markdown: Syntax&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#overview&quot;&gt;Overview&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#philosophy&quot;&gt;Philosophy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#html&quot;&gt;Inline HTML&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#autoescape&quot;&gt;Automatic Escaping for Special Characters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#overview&quot;&gt;Overview&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#philosophy&quot;&gt;Philosophy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#html&quot;&gt;Inline HTML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#autoescape&quot;&gt;Automatic Escaping for Special Characters&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#block&quot;&gt;Block Elements&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#p&quot;&gt;Paragraphs and Line Breaks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#header&quot;&gt;Headers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#blockquote&quot;&gt;Blockquotes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#list&quot;&gt;Lists&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#precode&quot;&gt;Code Blocks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#hr&quot;&gt;Horizontal Rules&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#block&quot;&gt;Block Elements&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#p&quot;&gt;Paragraphs and Line Breaks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#header&quot;&gt;Headers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#blockquote&quot;&gt;Blockquotes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#list&quot;&gt;Lists&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#precode&quot;&gt;Code Blocks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#hr&quot;&gt;Horizontal Rules&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#span&quot;&gt;Span Elements&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#link&quot;&gt;Links&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#em&quot;&gt;Emphasis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#code&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#img&quot;&gt;Images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#span&quot;&gt;Span Elements&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#link&quot;&gt;Links&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#em&quot;&gt;Emphasis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#code&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#img&quot;&gt;Images&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#misc&quot;&gt;Miscellaneous&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#backslash&quot;&gt;Backslash Escapes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#autolink&quot;&gt;Automatic Links&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#misc&quot;&gt;Miscellaneous&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#backslash&quot;&gt;Backslash Escapes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#autolink&quot;&gt;Automatic Links&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This document is itself written using Markdown; you
-can &lt;a href=&quot;http://localhost:8080/projects/markdown/syntax.text&quot;&gt;see the source for it by adding ‘.text’ to the URL&lt;/a&gt;.&lt;/p&gt;
+can &lt;a href=&quot;http://devric.github.com/projects/markdown/syntax.text&quot;&gt;see the source for it by adding ‘.text’ to the URL&lt;/a&gt;.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
@@ -324,7 +324,7 @@ into &lt;code&gt;&amp;amp;amp;&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;AT&amp;amp;T
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Markdown will translate it to:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;AT&amp;amp;amp;T
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Similarly, because Markdown supports &lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#html&quot;&gt;inline HTML&lt;/a&gt;, if you use
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Similarly, because Markdown supports &lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#html&quot;&gt;inline HTML&lt;/a&gt;, if you use
 angle brackets as delimiters for HTML tags, Markdown will treat them as
 such. But if you write:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;4 &amp;lt; 5
@@ -354,7 +354,7 @@ character in a paragraph into a &lt;code&gt;&amp;lt;br /&amp;gt;&lt;/code&gt; ta
 end a line with two or more spaces, then type return.&lt;/p&gt;
 &lt;p&gt;Yes, this takes a tad more effort to create a &lt;code&gt;&amp;lt;br /&amp;gt;&lt;/code&gt;, but a simplistic
 “every line break is a &lt;code&gt;&amp;lt;br /&amp;gt;&lt;/code&gt;“ rule wouldn’t work for Markdown.
-Markdown’s email-style &lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#blockquote&quot;&gt;blockquoting&lt;/a&gt; and multi-paragraph &lt;a href=&quot;http://localhost:8080/articles/markdown-syntax/#list&quot;&gt;list items&lt;/a&gt;
+Markdown’s email-style &lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#blockquote&quot;&gt;blockquoting&lt;/a&gt; and multi-paragraph &lt;a href=&quot;http://devric.github.com/articles/markdown-syntax/#list&quot;&gt;list items&lt;/a&gt;
 work best — and look better — when you format them with hard breaks.&lt;/p&gt;
 &lt;h3 id=&quot;header&quot;&gt;Headers&lt;/h3&gt;
 
