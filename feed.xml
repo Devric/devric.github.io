@@ -38,17 +38,17 @@
 &lt;p&gt;So i stumbbled on to wintersmith a static site generator like jekyll but for nodejs. AWESOME! I can just use github pages as my personal blog now! Its free and its easy to modify, and no more database backup needed, everything is static via github hosting.&lt;/p&gt;
 &lt;p&gt;Here’s how you do it:&lt;/p&gt;
 &lt;h4 id=&quot;setting-up&quot;&gt;Setting up&lt;/h4&gt;
-&lt;p&gt;1 - create a new repo on your github, repo name:  yourGithubAccount.github.io
-2 - clone it to your local
-3 - npm install wintersmith -g
-4 - cd to your local repo folder
-5 - wintersmith new admin
-6 - cd in to admin folder that you just created
-7 - add a line output : “../“ in the config file, can be the first option of the json object
-8 - now you can preview your site by typing wintersmith preview
-9 - you should be now able to see it on your browser with localhost:8080
-10 - generate your static stite to the root folder type wintersmith build
-11 - commit your new stuff and push, you should see your site on yourGithubAccount.github.io within 4-8 minutes&lt;/p&gt;
+&lt;p&gt;1 - create a new repo on your github, repo name:  yourGithubAccount.github.io&lt;/p&gt;
+&lt;p&gt;2 - clone it to your local&lt;/p&gt;
+&lt;p&gt;3 - npm install wintersmith -g&lt;/p&gt;
+&lt;p&gt;4 - cd to your local repo folder&lt;/p&gt;
+&lt;p&gt;5 - wintersmith new admin&lt;/p&gt;
+&lt;p&gt;6 - cd in to admin folder that you just created&lt;/p&gt;
+&lt;p&gt;7 - add a line output : “../“ in the config file, can be the first option of the json object&lt;/p&gt;
+&lt;p&gt;8 - now you can preview your site by typing wintersmith preview&lt;/p&gt;
+&lt;p&gt;9 - you should be now able to see it on your browser with localhost:8080&lt;/p&gt;
+&lt;p&gt;10 - generate your static stite to the root folder type wintersmith build&lt;/p&gt;
+&lt;p&gt;11 - commit your new stuff and push, you should see your site on yourGithubAccount.github.io within 4-8 minutes&lt;/p&gt;
 &lt;h4 id=&quot;adding-articles&quot;&gt;Adding articles&lt;/h4&gt;
 &lt;p&gt;All the post with wintersmith are within contents/articles folder, and its written with markdown, you can look through their samples articles.&lt;/p&gt;
 &lt;p&gt;To create a new article, you just need to create a new folder with index.md to start with. The folder name does not matter, I use date-title to name these folders.&lt;/p&gt;

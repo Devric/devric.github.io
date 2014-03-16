@@ -21,15 +21,25 @@ Here's how you do it:
 #### Setting up
 
 1 - create a new repo on your github, repo name:  yourGithubAccount.github.io
+
 2 - clone it to your local
+
 3 - npm install wintersmith -g
+
 4 - cd to your local repo folder
+
 5 - wintersmith new admin
+
 6 - cd in to admin folder that you just created
+
 7 - add a line output : "../" in the config file, can be the first option of the json object
+
 8 - now you can preview your site by typing wintersmith preview
+
 9 - you should be now able to see it on your browser with localhost:8080
+
 10 - generate your static stite to the root folder type wintersmith build
+
 11 - commit your new stuff and push, you should see your site on yourGithubAccount.github.io within 4-8 minutes
 
 #### Adding articles
