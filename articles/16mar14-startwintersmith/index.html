@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Bloging again with wintersmith - Devric
+    </title>
+    <link rel="alternate" href="http://localhost:8080/feed.xml" type="application/rss+xml" title="I'm just talking to myself...">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Bloging again with wintersmith</h1>
+        <p class="author">Written by <span class="author">Devric</span>
+        </p>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p>I was using co.cc a couple years ago and a simple wordpres blog, but since co.cc shuts down, and haven’t really backed up my files, I stopped blogging, until&nbsp;Wintersmith!</p>
+<p>Here’s how you set up one with github&nbsp;pages.</p>
+<p><span class="more"></span></p>
+<p>I had my domain name devric.io for almost 2 years but it seems theres an issue forwarding the address with <span class="caps">CNAME</span> to use with openshift host from Gandi register, issues submited to their technicians but seems takes ages for them to&nbsp;respond.</p>
+<p>So i stumbbled on to wintersmith a static site generator like jekyll but for nodejs. <span class="caps">AWESOME</span>! I can just use github pages as my personal blog now! Its free and its easy to modify, and no more database backup needed, everything is static via github&nbsp;hosting.</p>
+<p>Here’s how you do&nbsp;it:</p>
+<h4 id="setting-up">Setting&nbsp;up</h4>
+<p>1 - create a new repo on your github, repo name:  yourGithubAccount.github.io
+2 - clone it to your local
+3 - npm install wintersmith -g
+4 - cd to your local repo folder
+5 - wintersmith new admin
+6 - cd in to admin folder that you just created
+7 - add a line output : “../“ in the config file, can be the first option of the json object
+8 - now you can preview your site by typing wintersmith preview
+9 - you should be now able to see it on your browser with localhost:8080
+10 - generate your static stite to the root folder type wintersmith build
+11 - commit your new stuff and push, you should see your site on yourGithubAccount.github.io within 4-8&nbsp;minutes</p>
+<h4 id="adding-articles">Adding&nbsp;articles</h4>
+<p>All the post with wintersmith are within contents/articles folder, and its written with markdown, you can look through their samples&nbsp;articles.</p>
+<p>To create a new article, you just need to create a new folder with index.md to start with. The folder name does not matter, I use date-title to name these&nbsp;folders.</p>
+<p>Copy the first part of the config from other articles to your index.md, this config is how wintersmith index your article&nbsp;title.</p>
+<p>this is my config for this&nbsp;post</p>
+<pre><code>---
+title: Bloging again with wintersmith
+author: Devric
+date: 2014-04-14 22:00
+template: article.jade
+---
+</code></pre><h4 id="add-comment-box">Add comment&nbsp;box</h4>
+<p>Since this is a static site, theres no backend. But we can still add our comment system with disqus, simply go into the template folder and add the universal disqus code into the article.jade template file, you will need to learn jade lang a bit, don’t worry its really easy! Just follow the instruction on disqus and add it into a script. tag within your template right under your&nbsp;article.</p>
+<p>I’ll start to theme it soon, and put out guides on theming wintersmith&nbsp;:)</p>
+</section><div id="disqus_thread"></div>
+        </article>
+        <script>
+          var disqus_shortname = 'devricio'; // required: replace example with your forum shortname
+          
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          
+        </script>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">« Full blog</a></div>
+        <section class="about"><p>Wintersmith is made by <a href="http://johan-nordberg.com/">Johan Nordberg</a> and licensed under the <a href="http://opensource.org/licenses/MIT">MIT-license</a>.
+This footer text can be edited in about.md</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat.</p>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+dolore eu fugiat nulla pariatur.</p>
+<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+deserunt mollit anim id est laborum.</p>
+
+        </section>
+        <section class="copy">
+          <p>&copy; 2014 Devric</p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

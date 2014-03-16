@@ -11,7 +11,9 @@ block content
 	-	archives[archive] = _.groupBy(archives[archive], function(item){return item.date.getMonth();})
 	- }
 	- var month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
 	section.archive
+
 		h2 Archive
 		ul
 			- var yearsK = _.chain(archives).keys().reverse().value()
