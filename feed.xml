@@ -5,9 +5,172 @@
     <atom:link href="http://devric.github.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://devric.github.com</link>
     <description>I'm just talking to myself...</description>
-    <pubDate>Wed, 16 Apr 2014 15:00:00 +1000</pubDate>
+    <pubDate>Thu, 17 Apr 2014 14:23:00 +1000</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Grunt multiple project with one process</title>
+      <link>http://devric.github.com/articles/17mar14-gruntmulti/</link>
+      <pubDate>Thu, 17 Apr 2014 14:23:00 +1000</pubDate>
+      <guid isPermaLink="true">http://devric.github.com/articles/17mar14-gruntmulti/</guid>
+      <author></author>
+      <description>&lt;p&gt;Unlike traditional web development, for ease of upgrade and scalibility, today’s medium to large web application are broken down to smaller projects.&lt;/p&gt;
+&lt;p&gt;So how do we use just one grunt command to automate server, watch, and debugging.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Lets make a simple structure as example&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;backend service &amp;lt;----&amp;gt; front end 1
+
+                &amp;lt;----&amp;gt; front end x
+
+standalone admin app // the app for your client to control, or reports
+
+
+ multiple Front-end
+  apps / components
+|-------------------|                |--------------|
+|            |---|  |                |              |
+|  |---|     |   |  |                |              |
+|  |   |     |- -|  | -- request --&amp;gt; |              |
+|  |- -|            |                |              |
+|          |---|    |                |   services   |
+|          |   |    |                |      api     |
+|          |- -|    |                | file serving |
+|   |---|           | &amp;lt;- JSON ---    |              |
+|   |   |           |                |              |
+|   |- -|           |                |              | &amp;lt;-- |-----------|
+|-------------------|                |--------------| --&amp;gt; |           |
+                                                          | DB stacks |
+                                     |--------------| &amp;lt;-- |           |
+                                     |              | --&amp;gt; |-----------|
+                                     |  companies   |
+                                     | backend app  |
+                                     |              |
+                                     |--------------|
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Project folder structure&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Project
+ | Gruntfile
+ | run.sh
+ | service
+ |   - Gruntfile
+ | frontapp1
+ |   - Gruntfile
+ | frontapp2
+ |   - Gruntfile
+ | adminapp
+ |   - Gruntfile
+ | sharedAssets
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In your project folder we need &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;install&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;grunt-hub&lt;/li&gt;
+&lt;li&gt;node-inspector&lt;/li&gt;
+&lt;li&gt;preprocessors, if your front apps shares files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;leave it for now&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In each of your sub projects&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;install&lt;ul&gt;
+&lt;li&gt;grunt-concurent&lt;/li&gt;
+&lt;li&gt;grunt-nodemon&lt;/li&gt;
+&lt;li&gt;everything else for your project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now the fun part&lt;/p&gt;
+&lt;p&gt;In each of your sub project minimal gruntfile to kick start&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    concurrent : {
+        run : [&amp;#39;watch&amp;#39;, &amp;#39;nodemon&amp;#39;]
+      , options : {
+          logConcurrentOutput: true
+      }
+    }
+  , nodemon : {
+      dev : {
+        script : &amp;#39;app.js&amp;#39;
+      , options : {
+          nodeArgs : [&amp;#39;--debug&amp;#39;],   // if you require this app to be inspected via debugger
+          callback : function(nodemon){
+              nodemon.on(&amp;#39;restart&amp;#39;,function(){
+                setTimeout(function(){
+                    require(&amp;#39;fs&amp;#39;).writeFileSync(&amp;#39;.nodemon&amp;#39;,&amp;#39;reboot&amp;#39;);
+                }, 500)
+              })
+          }
+        }
+      }
+    }
+  , watch: {
+      options : {
+        livereload : 1337
+      }
+    , server : {
+        files : [&amp;#39;.nodemon&amp;#39;]
+      }
+    , css : {
+        files : &amp;#39;public/stylesheets/**/*.css&amp;#39;
+      }
+    }
+  });
+
+  grunt.loadNpmTasks(&amp;#39;grunt-contrib-watch&amp;#39;);
+  grunt.loadNpmTasks(&amp;#39;grunt-concurrent&amp;#39;);
+  grunt.loadNpmTasks(&amp;#39;grunt-nodemon&amp;#39;);
+
+  // Default task.
+  grunt.registerTask(&amp;#39;default&amp;#39;, [&amp;#39;concurrent:run&amp;#39;]);
+
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The most important thing is the concurent part, it allows you to watch and run the server at the same time, without having you to start each listener one at a time.&lt;/p&gt;
+&lt;p&gt;The nodemon callback on restart, make sure that when you edit your files, nodemon will restart the server, and have grunt-watch to listen on the file update and make a refresh after the server is rebooted&lt;/p&gt;
+&lt;p&gt;Your livereload ports need to be different, and you’ll have to add  script(src=”//localhost:1337/livereload.js”) with the correct port. (Jade syntax), for some can have it all listen to the master, and have watch to run hub command, But i won’t bother, its needs more setup in my master Gruntfile, unless all applications is small and  you are fine with restarting everything when one of your application need to change.&lt;/p&gt;
+&lt;p&gt;Now back to the master Gruntfile&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;module.exports = function(grunt) {
+  &amp;#39;use strict&amp;#39;;
+
+  grunt.initConfig({
+    hub: {
+      all: {
+        options : {
+          allowSelf : true
+        },
+        src: [&amp;#39;./Gruntfile.js&amp;#39;, &amp;#39;app1/Gruntfile.js&amp;#39;,&amp;#39;appx/Gruntfile.js&amp;#39;, &amp;#39;admin/Gruntfile.js&amp;#39; ,&amp;#39;service/Gruntfile.js&amp;#39;],
+        tasks: [&amp;#39;default&amp;#39;],
+      }
+    },
+    &amp;quot;node-inspector&amp;quot; : {
+        dev : {}
+    }
+  });
+
+  grunt.loadNpmTasks(&amp;#39;grunt-hub&amp;#39;);
+  grunt.loadNpmTasks(&amp;#39;grunt-node-inspector&amp;#39;);
+
+  grunt.registerTask(&amp;#39;default&amp;#39;, [&amp;#39;node-inspector]);
+  grunt.registerTask(&amp;#39;run&amp;#39;, [&amp;#39;hub&amp;#39;]);
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Important note for grunt-hub, if you need your master Grunt to do some magic, make sure you don’t run your hub task run in your default task, if you do, you your grunt will loop itself indefinetly.&lt;/p&gt;
+&lt;p&gt;What I did is registered the hub task into run command, when you type grunt run, it will look for hub tasks.&lt;/p&gt;
+&lt;p&gt;For the hub to run the master Gruntfile, you will need to add allowSelf:true to the hub’s options. &lt;/p&gt;
+&lt;p&gt;The Src:[] array is what your hub will look for and run its default task.&lt;/p&gt;
+&lt;p&gt;In the master I have added node-inspector, this creates as a default debuger at port localhost:8000/debug?port=5858, and have one of your child grunt to run the nodemon nodeArgs:[‘—debug’] to make your debuger inspect your app.&lt;/p&gt;
+&lt;p&gt;Last but not least, to make your life easier when others pulls your project and need to install all the node modules in each of your folders. Write a simple bash script&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+DIR = $(&amp;quot;pwd&amp;quot;)
+npm install
+cd $DIR/project-a &amp;amp;&amp;amp; npm install
+cd $DIR/project-b &amp;amp;&amp;amp; npm install
+cd $DIR &amp;amp;&amp;amp; grunt run
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And if you have too many folders… write yourself a loop…&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Having fun with Docker</title>
       <link>http://devric.github.com/articles/docker1/</link>

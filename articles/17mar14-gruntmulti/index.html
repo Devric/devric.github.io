@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Grunt multiple project with one process - Devric
+    </title>
+    <link rel="alternate" href="http://devric.github.com/feed.xml" type="application/rss+xml" title="I'm just talking to myself...">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+    <link rel="stylesheet" href="/css/main.css">
+    <script rel="javascript" src="/js/turbolinks.min.js"></script>
+    <script>
+      Turbolinks.enableTransitionCache()
+      
+    </script>
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Grunt multiple project with one process</h1>
+        <p class="author">Written by <span class="author">Devric</span>
+        </p>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p>Unlike traditional web development, for ease of upgrade and scalibility, today’s medium to large web application are broken down to smaller&nbsp;projects.</p>
+<p>So how do we use just one grunt command to automate server, watch, and&nbsp;debugging.</p>
+<p><span class="more"></span></p>
+<p>Lets make a simple structure as&nbsp;example</p>
+<pre><code>backend service &lt;----&gt; front end 1
+
+                &lt;----&gt; front end x
+
+standalone admin app // the app for your client to control, or reports
+
+
+ multiple Front-end
+  apps / components
+|-------------------|                |--------------|
+|            |---|  |                |              |
+|  |---|     |   |  |                |              |
+|  |   |     |- -|  | -- request --&gt; |              |
+|  |- -|            |                |              |
+|          |---|    |                |   services   |
+|          |   |    |                |      api     |
+|          |- -|    |                | file serving |
+|   |---|           | &lt;- JSON ---    |              |
+|   |   |           |                |              |
+|   |- -|           |                |              | &lt;-- |-----------|
+|-------------------|                |--------------| --&gt; |           |
+                                                          | DB stacks |
+                                     |--------------| &lt;-- |           |
+                                     |              | --&gt; |-----------|
+                                     |  companies   |
+                                     | backend app  |
+                                     |              |
+                                     |--------------|
+</code></pre><p>Project folder&nbsp;structure</p>
+<pre><code>Project
+ | Gruntfile
+ | run.sh
+ | service
+ |   - Gruntfile
+ | frontapp1
+ |   - Gruntfile
+ | frontapp2
+ |   - Gruntfile
+ | adminapp
+ |   - Gruntfile
+ | sharedAssets
+</code></pre><p>In your project folder we&nbsp;need </p>
+<ol>
+<li><p>install</p>
+<ul>
+<li>grunt-hub</li>
+<li>node-inspector</li>
+<li>preprocessors, if your front apps shares&nbsp;files</li>
+</ul>
+</li>
+<li><p>leave it for&nbsp;now</p>
+</li>
+</ol>
+<p>In each of your sub&nbsp;projects</p>
+<ol>
+<li>install<ul>
+<li>grunt-concurent</li>
+<li>grunt-nodemon</li>
+<li>everything else for your&nbsp;project</li>
+</ul>
+</li>
+</ol>
+<p>Now the fun&nbsp;part</p>
+<p>In each of your sub project minimal gruntfile to kick&nbsp;start</p>
+<pre><code>module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    concurrent : {
+        run : [&#39;watch&#39;, &#39;nodemon&#39;]
+      , options : {
+          logConcurrentOutput: true
+      }
+    }
+  , nodemon : {
+      dev : {
+        script : &#39;app.js&#39;
+      , options : {
+          nodeArgs : [&#39;--debug&#39;],   // if you require this app to be inspected via debugger
+          callback : function(nodemon){
+              nodemon.on(&#39;restart&#39;,function(){
+                setTimeout(function(){
+                    require(&#39;fs&#39;).writeFileSync(&#39;.nodemon&#39;,&#39;reboot&#39;);
+                }, 500)
+              })
+          }
+        }
+      }
+    }
+  , watch: {
+      options : {
+        livereload : 1337
+      }
+    , server : {
+        files : [&#39;.nodemon&#39;]
+      }
+    , css : {
+        files : &#39;public/stylesheets/**/*.css&#39;
+      }
+    }
+  });
+
+  grunt.loadNpmTasks(&#39;grunt-contrib-watch&#39;);
+  grunt.loadNpmTasks(&#39;grunt-concurrent&#39;);
+  grunt.loadNpmTasks(&#39;grunt-nodemon&#39;);
+
+  // Default task.
+  grunt.registerTask(&#39;default&#39;, [&#39;concurrent:run&#39;]);
+
+};
+</code></pre><p>The most important thing is the concurent part, it allows you to watch and run the server at the same time, without having you to start each listener one at a&nbsp;time.</p>
+<p>The nodemon callback on restart, make sure that when you edit your files, nodemon will restart the server, and have grunt-watch to listen on the file update and make a refresh after the server is&nbsp;rebooted</p>
+<p>Your livereload ports need to be different, and you’ll have to add  script(src=”//localhost:1337/livereload.js”) with the correct port. (Jade syntax), for some can have it all listen to the master, and have watch to run hub command, But i won’t bother, its needs more setup in my master Gruntfile, unless all applications is small and  you are fine with restarting everything when one of your application need to&nbsp;change.</p>
+<p>Now back to the master&nbsp;Gruntfile</p>
+<pre><code>module.exports = function(grunt) {
+  &#39;use strict&#39;;
+
+  grunt.initConfig({
+    hub: {
+      all: {
+        options : {
+          allowSelf : true
+        },
+        src: [&#39;./Gruntfile.js&#39;, &#39;app1/Gruntfile.js&#39;,&#39;appx/Gruntfile.js&#39;, &#39;admin/Gruntfile.js&#39; ,&#39;service/Gruntfile.js&#39;],
+        tasks: [&#39;default&#39;],
+      }
+    },
+    &quot;node-inspector&quot; : {
+        dev : {}
+    }
+  });
+
+  grunt.loadNpmTasks(&#39;grunt-hub&#39;);
+  grunt.loadNpmTasks(&#39;grunt-node-inspector&#39;);
+
+  grunt.registerTask(&#39;default&#39;, [&#39;node-inspector]);
+  grunt.registerTask(&#39;run&#39;, [&#39;hub&#39;]);
+};
+</code></pre><p>Important note for grunt-hub, if you need your master Grunt to do some magic, make sure you don’t run your hub task run in your default task, if you do, you your grunt will loop itself&nbsp;indefinetly.</p>
+<p>What I did is registered the hub task into run command, when you type grunt run, it will look for hub&nbsp;tasks.</p>
+<p>For the hub to run the master Gruntfile, you will need to add allowSelf:true to the hub’s&nbsp;options. </p>
+<p>The Src:[] array is what your hub will look for and run its default&nbsp;task.</p>
+<p>In the master I have added node-inspector, this creates as a default debuger at port localhost:8000/debug?port=5858, and have one of your child grunt to run the nodemon nodeArgs:[‘—debug’] to make your debuger inspect your&nbsp;app.</p>
+<p>Last but not least, to make your life easier when others pulls your project and need to install all the node modules in each of your folders. Write a simple bash&nbsp;script</p>
+<pre><code>#!/bin/bash
+DIR = $(&quot;pwd&quot;)
+npm install
+cd $DIR/project-a &amp;&amp; npm install
+cd $DIR/project-b &amp;&amp; npm install
+cd $DIR &amp;&amp; grunt run
+</code></pre><p>And if you have too many folders… write yourself a&nbsp;loop…</p>
+</section><div id="disqus_thread"></div>
+        </article>
+        <script>
+          var disqus_shortname = 'devricio'; // required: replace example with your forum shortname
+          
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          
+        </script>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <nav class="tags"><span><a href="/tag/grunt/1/" class="big">grunt</a><a href="/tag/node/1/" class="big">node</a><a href="/tag/wintersmith/1/" class="big">wintersmith</a><a href="/tag/general/1/" class="big">general</a><a href="/tag/ie/1/" class="big">ie</a><a href="/tag/css/1/" class="big">css</a><a href="/tag/docker/1/" class="big">docker</a></span>
+        </nav>
+        <div class="nav"><a href="/">« Full blog</a></div>
+        <section class="about"><p>This blog is powerd by <a href="http://wintersmith.io/">Wintersmith</a> + <a href="http://github.com/">github pages</a></p>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49009094-1', 'devric.github.io');
+  ga('send', 'pageview');
+
+</script>
+
+        </section>
+        <section class="copy">
+          <p>&copy; 2014 Devric</p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>
