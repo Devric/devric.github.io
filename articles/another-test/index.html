@@ -10,8 +10,21 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
     <link rel="stylesheet" href="/css/main.css">
     <script rel="javascript" src="/js/turbolinks.min.js"></script>
+    <script rel="javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script rel="javascript" src="/js/min.tweet.3.js"></script>
     <script>
       Turbolinks.enableTransitionCache()
+      
+      $(document).ready(function(e) {
+          $('.twitter_feed').getmytweets({
+              twitter_sn: 'idevrc', /* my twitter username */
+              twitter_wrap: 'tweet', /* wrap each tweet with a class */
+              twitter_limit: 10, /* how many tweets to return */
+              twitter_pp: false, /* display your profile picture */
+              twitter_stats: false, /* display your twitter stats */
+              twitter_details: false /* display your details (name, location) */
+          });
+      });
       
     </script>
   </head>
@@ -129,9 +142,12 @@ The theme used is tomorrow, you can find more themes <a href="http://jmblog.gith
     </div>
     <footer>
       <div class="content-wrap">
-        <nav class="tags"><span><a href="/tag/grunt/1/" class="big">grunt</a><a href="/tag/node/1/" class="big">node</a><a href="/tag/wintersmith/1/" class="big">wintersmith</a><a href="/tag/general/1/" class="big">general</a><a href="/tag/ie/1/" class="big">ie</a><a href="/tag/css/1/" class="big">css</a><a href="/tag/docker/1/" class="big">docker</a></span>
+        <nav class="tags"><span><a href="/tag/wintersmith/1/" class="big">wintersmith</a><a href="/tag/general/1/" class="big">general</a><a href="/tag/ie/1/" class="big">ie</a><a href="/tag/css/1/" class="big">css</a><a href="/tag/docker/1/" class="big">docker</a><a href="/tag/grunt/1/" class="big">grunt</a><a href="/tag/node/1/" class="big">node</a></span>
         </nav>
         <div class="nav"><a href="/">« Full blog</a></div>
+        <section class="tweets">
+          <div class="twitter_feed"></div>
+        </section>
         <section class="about"><p>This blog is powerd by <a href="http://wintersmith.io/">Wintersmith</a> + <a href="http://github.com/">github pages</a></p>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

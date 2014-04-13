@@ -1,8 +1,12 @@
 {
-  "dependencies": {
-    "moment": "2.3.x",
-    "underscore": "1.4.x",
-    "typogr": "0.5.x"
+  "engines": {
+    "node": ">= 0.10.0"
   },
-  "repository": "none"
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.7"
+    "grunt-contrib-stylus": "~0.2.7"
+  }
 }
