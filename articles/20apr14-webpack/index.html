@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Webpack, crazy commonjs / amd bundler - Devric
+    </title>
+    <link rel="alternate" href="http://devric.github.com/feed.xml" type="application/rss+xml" title="I'm just talking to myself...">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+    <link rel="stylesheet" href="/css/main.css">
+    <script rel="javascript" src="/js/turbolinks.min.js"></script>
+    <script rel="javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script rel="javascript" src="/js/min.tweet.3.js"></script>
+    <script>
+      Turbolinks.enableTransitionCache()
+      
+      $(document).ready(function(e) {
+          $('.twitter_feed').getmytweets({
+              twitter_sn: 'idevrc', /* my twitter username */
+              twitter_wrap: 'tweet', /* wrap each tweet with a class */
+              twitter_limit: 10, /* how many tweets to return */
+              twitter_pp: false, /* display your profile picture */
+              twitter_stats: false, /* display your twitter stats */
+              twitter_details: false /* display your details (name, location) */
+          });
+      });
+      
+    </script>
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Webpack, crazy commonjs / amd bundler</h1>
+        <p class="author">Written by <span class="author">Devric</span>
+        </p>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p><img src="/articles/20apr14-webpack/logo.png" alt="Webpack"></p>
+<p>Requirejs was good, and still is, but as more time spend coding in the backend, the node require becomes a habit, and will start to get tired with <span class="caps">AMD</span> everytime you create a new&nbsp;file. </p>
+<p>Than came along browserify, a lot of developers have moved over to it. But browserify does not offer code spliting like reuqirejs does… as well as other little candies like css loader and so&nbsp;on. </p>
+<p>I don’t want to load the whole app in just one big file, some one page application these days can go over 1mb for just the .js files. <a href="http://webpack.github.io/">Webpack</a> come to the&nbsp;rescue.</p>
+<p><span class="more"></span></p>
+<h1 id="simple-setup">Simple&nbsp;setup</h1>
+<h3 id="setting-up-webpack">Setting up&nbsp;webpack</h3>
+<pre><code>    npm install webpack -g
+</code></pre><h3 id="create-your-js-files">create your js&nbsp;files</h3>
+<p>To begin the test, we just create a app.js file as entry point and another file to be&nbsp;included</p>
+<pre><code>    // app.js
+    var test = require([&#39;./test&#39;])
+
+    console.log(test)
+</code></pre><p>heres the include&nbsp;file</p>
+<pre><code>    // test.js
+    module.exports = &quot;hey you got me&quot;
+</code></pre><p>Once u got these 2 files, you can run the webpack command to bundle&nbsp;it</p>
+<pre><code>    // the first argument is the entry script, the second argument is the output
+    webpack ./app.js bundle.js
+</code></pre><p>You just need to load the bundle.js into your html and you are good to&nbsp;go!</p>
+<h1 id="what-about-code-spliting-and-lazy-loading-">What about code spliting and lazy&nbsp;loading??</h1>
+<p>lets say we have a index page with indexCtrl and conact page with contactCtrl, but I only want to load the contactCtrl when the user click on the menu from the&nbsp;indexPage</p>
+<pre><code>    // indexCtrl.js as the entry script
+    // we will use jquery for the events
+
+    $(document).on(&#39;click&#39;, &#39;.open-about&#39;, function(){
+        require(&#39;./aboutCtrl&#39;, function(about){
+            about.init()
+        })
+    })
+</code></pre><p>Now if you try to compile indexCtrl, webpack will split the files automatically for you.
+you can now just load both jquery and your bundle.js file, and test it with the network panel on the click&nbsp;event. </p>
+<p><img src="/articles/20apr14-webpack/network.png" alt="network"></p>
+<p>Nice huh, for my test, 2.bundle.js will only be loaded after the click&nbsp;event</p>
+<h1 id="hm-i-don-t-wnat-to-bundle-jquery-or-something-large-that-can-be-used-on-cdn-"><span class="caps">HM</span> I don’t wnat to bundle jQuery or something large that can be used on&nbsp;CDN!</h1>
+<p>Unfortunely at the time of writing this, webpack only works as a bundler, and does not take care of dependency loading on these external files, the best you can do is not to bundle it, but manullay use script tag to add jQuery before your bundle.js. Its best to use a webpack.config.js file so you don’t have to type out the cmd evrytime you you compile. Webpack offers a dev watch server, but I use gulp, take a dig into the webpack&nbsp;documentation.</p>
+<p>But <span class="caps">YAH</span> it gets annoying if you use multiple cdn stuff like, backbone, angular… What I do is used the jQuery promise to solve this issue, and load them, this is what i&nbsp;do</p>
+<pre><code>    // index.html
+
+    &lt;script src=&quot;//whatever-cdn.jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(function(){
+            $.when(
+                $.getScript(&quot;lodash&quot;),
+            ).then(function(){
+                $.getScript(&quot;backbone&quot;),
+                $.getScript(&quot;react&quot;)
+            }).done(function(){
+                $.getScript(&#39;bundle.js&#39;)
+            })
+        })
+    &lt;/script&gt;
+</code></pre><p>And if any of your module requires a backbone plugin like pagination, I’ll lazy load&nbsp;them</p>
+<pre><code>    // someModule.js
+    require([&#39;backbone.paginiation&#39;])
+</code></pre><p>than I begin to work with the pagination plugin, some people use those smaller plugins off the <span class="caps">CDN</span>, but I like to bundle everything that is not over&nbsp;100kb</p>
+<h1 id="wrap-up">Wrap&nbsp;up</h1>
+<p>Go dig into their documentations, they offer css compiling into a js file, so your whole app won’t even required to manually load the link tags for css, and other&nbsp;goodies.</p>
+<p>Me personally, I won’t bundle the css unless either your app is really small or really big, if its really small, just load everything in one js file, won’t hurt your loading. If it is too big, I’ll link the base-styles…css and lazy load any other component based&nbsp;css</p>
+</section><div id="disqus_thread"></div>
+        </article>
+        <script>
+          var disqus_shortname = 'devricio'; // required: replace example with your forum shortname
+          
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          
+        </script>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <nav class="tags"><span><a href="/tag/webpack/1/" class="big">webpack</a><a href="/tag/tutorial/1/" class="big">tutorial</a><a href="/tag/wintersmith/1/" class="big">wintersmith</a><a href="/tag/general/1/" class="big">general</a><a href="/tag/docker/1/" class="big">docker</a><a href="/tag/ie/1/" class="big">ie</a><a href="/tag/css/1/" class="big">css</a><a href="/tag/grunt/1/" class="big">grunt</a><a href="/tag/node/1/" class="big">node</a></span>
+        </nav>
+        <div class="nav"><a href="/">« Full blog</a></div>
+        <section class="tweets">
+          <div class="twitter_feed"></div>
+        </section>
+        <section class="about"><p>This blog is powerd by <a href="http://wintersmith.io/">Wintersmith</a> + <a href="http://github.com/">github pages</a></p>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49009094-1', 'devric.github.io');
+  ga('send', 'pageview');
+
+</script>
+
+        </section>
+        <section class="copy">
+          <p>&copy; 2014 Devric</p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

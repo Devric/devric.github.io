@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
-    <title>Ie Hates Css - Devric
+    <title>Devric
     </title>
     <link rel="alternate" href="http://devric.github.com/feed.xml" type="application/rss+xml" title="I'm just talking to myself...">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
@@ -28,61 +28,36 @@
       
     </script>
   </head>
-  <body class="article-detail">
+  <body>
     <header class="header">
       <div class="content-wrap">
-        <h1>Ie Hates Css</h1>
-        <p class="author">Written by <span class="author">Devric</span>
-        </p>
+        <div class="logo">
+          <h1><a href="http://devric.github.com">Devric</a></h1>
+          <p class="description">I'm just talking to myself...</p>
+        </div>
       </div>
     </header>
     <div id="content">
       <div class="content-wrap">
-        <article class="article">
-          <section class="content"><p>Ie Hates css, it’s fustrating and we all know that… So for those who not yet using a css preprocessor and need to break css down into components or pages during the development of a large application, you wouldn’t want to cocat the whole css file every time you make a small change, so to make your development process faster you would just link those css files one by one into your app. But ie has a limit of how many css files it can load. heres how to do&nbsp;it.</p>
-<p><span class="more"></span></p>
-<p>To make <span class="caps">IE</span> loads all the css file you can use inline&nbsp;@import</p>
-<pre><code>&lt;style&gt;
-@import &#39;button.css&#39;
-@import &#39;page.css&#39;
-&lt;/style&gt;
-</code></pre><p>But it will still hit a limit if you keep on @importing more than 30 files per style tag, what you do is do a loop and make sure there no more than 20 @import per style tags (I don’t remember the excat limit, but as long as it kept under 20 @imports, it should work fine. you can easily break your css down to more than 100&nbsp;files).</p>
-<p>Like&nbsp;this</p>
-<pre><code>&lt;style&gt;
-@import &#39;button.css&#39;
-...
-...
-...
-@import &#39;layout-app.css&#39;
-@import &#39;layout-body.css&#39;
-@import &#39;layout-footer.css&#39;
-&lt;/style&gt;
+        <article class="article intro">
+          <header>
+            <p class="date"><span>02. February 2012</span></p>
+            <h2><a href="/articles/markdown-syntax/">Markdown syntax</a></h2>
+          </header>
+          <section class="content"><p>Full markdown syntax taken from John Gruber’s <a href="http://daringfireball.net/projects/markdown/syntax">Daring Fireball</a>.
+Did you know that 9 out of 10 bloggers prefer to write in&nbsp;markdown?</p>
 
-&lt;style&gt;
-@import &#39;page-home.css&#39;
-@import &#39;pages-omething.css&#39;
-...
-...
-...
-@import &#39;widget-slider-one.css&#39;
-&lt;/style&gt;
-</code></pre></section><div id="disqus_thread"></div>
+            <p class="more"><a href="/articles/markdown-syntax/">more</a></p>
+          </section>
         </article>
-        <script>
-          var disqus_shortname = 'devricio'; // required: replace example with your forum shortname
-          
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          
-        </script>
       </div>
     </div>
     <footer>
       <div class="content-wrap">
         <nav class="tags"><span><a href="/tag/webpack/1/" class="big">webpack</a><a href="/tag/tutorial/1/" class="big">tutorial</a><a href="/tag/wintersmith/1/" class="big">wintersmith</a><a href="/tag/general/1/" class="big">general</a><a href="/tag/docker/1/" class="big">docker</a><a href="/tag/ie/1/" class="big">ie</a><a href="/tag/css/1/" class="big">css</a><a href="/tag/grunt/1/" class="big">grunt</a><a href="/tag/node/1/" class="big">node</a></span>
         </nav>
-        <div class="nav"><a href="/">« Full blog</a></div>
+        <div class="nav"><a href="/page/2/">« Newer</a>
+        </div>
         <section class="tweets">
           <div class="twitter_feed"></div>
         </section>

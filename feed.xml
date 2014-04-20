@@ -5,9 +5,77 @@
     <atom:link href="http://devric.github.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://devric.github.com</link>
     <description>I'm just talking to myself...</description>
-    <pubDate>Thu, 17 Apr 2014 14:23:00 +1000</pubDate>
+    <pubDate>Sun, 20 Apr 2014 22:00:00 +1000</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Webpack, crazy commonjs / amd bundler</title>
+      <link>http://devric.github.com/articles/20apr14-webpack/</link>
+      <pubDate>Sun, 20 Apr 2014 22:00:00 +1000</pubDate>
+      <guid isPermaLink="true">http://devric.github.com/articles/20apr14-webpack/</guid>
+      <author></author>
+      <description>&lt;p&gt;&lt;img src=&quot;http://devric.github.com/articles/20apr14-webpack/logo.png&quot; alt=&quot;Webpack&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Requirejs was good, and still is, but as more time spend coding in the backend, the node require becomes a habit, and will start to get tired with AMD everytime you create a new file. &lt;/p&gt;
+&lt;p&gt;Than came along browserify, a lot of developers have moved over to it. But browserify does not offer code spliting like reuqirejs does… as well as other little candies like css loader and so on. &lt;/p&gt;
+&lt;p&gt;I don’t want to load the whole app in just one big file, some one page application these days can go over 1mb for just the .js files. &lt;a href=&quot;http://webpack.github.io/&quot;&gt;Webpack&lt;/a&gt; come to the rescue.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h1 id=&quot;simple-setup&quot;&gt;Simple setup&lt;/h1&gt;
+&lt;h3 id=&quot;setting-up-webpack&quot;&gt;Setting up webpack&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;    npm install webpack -g
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;create-your-js-files&quot;&gt;create your js files&lt;/h3&gt;
+&lt;p&gt;To begin the test, we just create a app.js file as entry point and another file to be included&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    // app.js
+    var test = require([&amp;#39;./test&amp;#39;])
+
+    console.log(test)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;heres the include file&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    // test.js
+    module.exports = &amp;quot;hey you got me&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Once u got these 2 files, you can run the webpack command to bundle it&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    // the first argument is the entry script, the second argument is the output
+    webpack ./app.js bundle.js
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You just need to load the bundle.js into your html and you are good to go!&lt;/p&gt;
+&lt;h1 id=&quot;what-about-code-spliting-and-lazy-loading-&quot;&gt;What about code spliting and lazy loading??&lt;/h1&gt;
+&lt;p&gt;lets say we have a index page with indexCtrl and conact page with contactCtrl, but I only want to load the contactCtrl when the user click on the menu from the indexPage&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    // indexCtrl.js as the entry script
+    // we will use jquery for the events
+
+    $(document).on(&amp;#39;click&amp;#39;, &amp;#39;.open-about&amp;#39;, function(){
+        require(&amp;#39;./aboutCtrl&amp;#39;, function(about){
+            about.init()
+        })
+    })
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now if you try to compile indexCtrl, webpack will split the files automatically for you.
+you can now just load both jquery and your bundle.js file, and test it with the network panel on the click event. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://devric.github.com/articles/20apr14-webpack/network.png&quot; alt=&quot;network&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Nice huh, for my test, 2.bundle.js will only be loaded after the click event&lt;/p&gt;
+&lt;h1 id=&quot;hm-i-don-t-wnat-to-bundle-jquery-or-something-large-that-can-be-used-on-cdn-&quot;&gt;HM I don’t wnat to bundle jQuery or something large that can be used on CDN!&lt;/h1&gt;
+&lt;p&gt;Unfortunely at the time of writing this, webpack only works as a bundler, and does not take care of dependency loading on these external files, the best you can do is not to bundle it, but manullay use script tag to add jQuery before your bundle.js. Its best to use a webpack.config.js file so you don’t have to type out the cmd evrytime you you compile. Webpack offers a dev watch server, but I use gulp, take a dig into the webpack documentation.&lt;/p&gt;
+&lt;p&gt;But YAH it gets annoying if you use multiple cdn stuff like, backbone, angular… What I do is used the jQuery promise to solve this issue, and load them, this is what i do&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    // index.html
+
+    &amp;lt;script src=&amp;quot;//whatever-cdn.jquery.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script&amp;gt;
+        $(function(){
+            $.when(
+                $.getScript(&amp;quot;lodash&amp;quot;),
+            ).then(function(){
+                $.getScript(&amp;quot;backbone&amp;quot;),
+                $.getScript(&amp;quot;react&amp;quot;)
+            }).done(function(){
+                $.getScript(&amp;#39;bundle.js&amp;#39;)
+            })
+        })
+    &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And if any of your module requires a backbone plugin like pagination, I’ll lazy load them&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    // someModule.js
+    require([&amp;#39;backbone.paginiation&amp;#39;])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;than I begin to work with the pagination plugin, some people use those smaller plugins off the CDN, but I like to bundle everything that is not over 100kb&lt;/p&gt;
+&lt;h1 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h1&gt;
+&lt;p&gt;Go dig into their documentations, they offer css compiling into a js file, so your whole app won’t even required to manually load the link tags for css, and other goodies.&lt;/p&gt;
+&lt;p&gt;Me personally, I won’t bundle the css unless either your app is really small or really big, if its really small, just load everything in one js file, won’t hurt your loading. If it is too big, I’ll link the base-styles…css and lazy load any other component based css&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Grunt multiple project with one process</title>
       <link>http://devric.github.com/articles/17mar14-gruntmulti/</link>
